@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Телефонная книга</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Телефонная книга</h1>
+    <input id="searchInput" type="text" placeholder="Поиск контактов..." />
+
+    <div id="contactsContainer" class="contacts"></div>
+
+    <button id="addContactBtn" class="add-contact">Добавить</button>
+
+    <!-- Модальное окно для добавления контакта -->
+    <div id="modal" class="modal hidden">
+      <div class="modal-content">
+        <h2>Добавить</h2>
+        <form id="addContactForm">
+          <input id="contactName" type="text" placeholder="Имя" required />
+          <input id="contactPhone" type="tel" placeholder="Телефон" required />
+          <div class="checkbox-container">
+            <input id="contactFavorite" type="checkbox" />
+            <label for="contactFavorite">Избранное</label>
+          </div>
+          <button type="submit">Создать</button>
+          <button type="button" id="closeModal">Отмена</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
