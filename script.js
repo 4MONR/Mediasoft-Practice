@@ -11,22 +11,18 @@ const contacts = [
   const addContactForm = document.getElementById('addContactForm');
   const phoneInput = document.getElementById('contactPhone');
   
-  // Маска для поля телефона и обработка номера, начинающегося с 8
   phoneInput.addEventListener('input', () => {
-    let input = phoneInput.value.replace(/\D/g, ''); // Удаляем всё, кроме цифр
+    let input = phoneInput.value.replace(/\D/g, '');
   
-    // Если номер начинается с 8, заменяем на +7
     if (input.startsWith('8')) {
       input = '7' + input.slice(1);
     }
   
-    // Форматируем номер
     phoneInput.value = input
-      .replace(/(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})/, '+$1 ($2) $3-$4-$5') // Формат: +7 (123) 456-78-90
-      .substring(0, 18); // Ограничиваем длину
+      .replace(/(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})/, '+$1 ($2) $3-$4-$5') 
+      .substring(0, 18); 
   });
   
-  // Отрисовка контактов
   function renderContacts(filter = '') {
     contactsContainer.innerHTML = '';
   
@@ -65,7 +61,6 @@ const contacts = [
     });
   }
   
-  // Удаление контакта
   function deleteContact(id) {
     const index = contacts.findIndex((contact) => contact.id === id);
     if (index > -1) {
@@ -74,7 +69,6 @@ const contacts = [
     }
   }
   
-  // Добавление/удаление из избранного
   function toggleFavorite(id) {
     const contact = contacts.find((contact) => contact.id === id);
     if (contact) {
@@ -83,7 +77,6 @@ const contacts = [
     }
   }
   
-  // Добавление нового контакта
   addContactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = document.getElementById('contactName').value.trim();
@@ -94,17 +87,14 @@ const contacts = [
       contacts.push({ id: Date.now(), name, phone, favorite });
       renderContacts();
       modal.classList.add('hidden');
-      addContactForm.reset(); // Сброс формы после добавления
+      addContactForm.reset(); 
     }
   });
   
-  // Открытие/закрытие модального окна
   addContactBtn.addEventListener('click', () => modal.classList.remove('hidden'));
   closeModal.addEventListener('click', () => modal.classList.add('hidden'));
   
-  // Поиск контактов
   searchInput.addEventListener('input', (e) => renderContacts(e.target.value));
   
-  // Инициализация
   renderContacts();
   
